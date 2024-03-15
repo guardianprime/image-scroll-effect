@@ -1,26 +1,27 @@
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const imgContainerEl = document.querySelector(".image-container");
-let x = 0;
-let timer =
-    prevBtn.addEventListener("click", () => {
-        x += 45;
-        clearTimeout(timer);
-        updateGallery();
+let x = 45;
 
-    })
+prevBtn.addEventListener("click", () => {
+    clearTimeout(timer)
+    x += 45;
+    rotateImg()
+})
 nextBtn.addEventListener("click", () => {
+    clearTimeout(timer)
     x -= 45;
-    clearTimeout(timer);
-    updateGallery();
+    rotateImg()
 })
 
-function updateGallery() {
-    imgContainerEl.style.transform = `perspective(1000px) rotateY(${x}deg)`;
+function rotateImg() {
+    imgContainerEl.style.transform = `perspective(1000px) rotateY(${x}deg)`
+
     timer = setTimeout(() => {
         x -= 45;
-        updateGallery()
+        rotateImg()
     }, 3000);
 }
 
-updateGallery();
+rotateImg()
+
